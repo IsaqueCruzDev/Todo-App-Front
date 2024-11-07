@@ -1,0 +1,38 @@
+<main class="main">
+    <form class="form-container" (submit)="login($event)">
+    <h6 class="title">Bem-vindo!</h6>
+        <mat-form-field class="email-form-field">
+            <mat-label>E-mail</mat-label>
+            <input type="email" matInput placeholder="E-mail" [formControl]="emailFormControl" [errorStateMatcher]="matcher">
+            @if (emailFormControl.hasError('email') && !emailFormControl.hasError('required')) {
+                <mat-error>Por favor, insira um e-mail válido!</mat-error>
+            }
+
+            @if (emailFormControl.hasError('required')) {
+                <mat-error>E-mail é <strong>obrigatório!</strong></mat-error>
+            }
+        </mat-form-field>
+
+        <mat-form-field class="password-form-field">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput placeholder="Digite sua senha" [formControl]="passwordFormControl" [errorStateMatcher]="matcher">
+            @if (passwordFormControl.hasError('min') && !passwordFormControl.hasError('required')) {
+                <mat-error>Mínimo de 4 caracteres!</mat-error>
+            }
+
+            @if (passwordFormControl.hasError('required')) {
+                <mat-error>Senha é <strong>obrigatória!</strong></mat-error>
+            }
+        </mat-form-field>
+        
+        <div class="forgot-password">
+            <p>Esqueceu a senha?</p>
+        </div>
+
+        <button type="submit" class="button-submit" mat-flat-button>Access</button>
+
+        <div class="dont-have-account">
+            <p>Não possui uma conta? <strong class="cursor-pointer" (click)="redirectToRegister()">Criar</strong></p>
+        </div>
+    </form>
+</main>
